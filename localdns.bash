@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+USER_ID=$(id -u)
+
+if [[ $USER_ID != 0 ]]; then
+  sudo "$0" $*
+  exit $?
+fi
+
 RESOLV_FILE='/etc/resolv.conf'
 LOCAL_DNS_IP='127.0.0.1'
 NON_LOCAL_DNS_IP='8.8.8.8'
